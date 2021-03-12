@@ -13,7 +13,7 @@ public class GameCanvas extends JPanel {
 
     public GameCanvas (GamePanel panel) {
         this.panel = panel;
-        setPreferredSize(new Dimension(600, 600));
+        setPreferredSize(new Dimension(600, 300));
         setBackground(Color.green);
     }
 

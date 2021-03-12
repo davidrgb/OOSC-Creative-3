@@ -9,7 +9,6 @@ public class ComputerHand extends Hand {
     private static final int CARD_WIDTH = 80;
     private static final int CARD_HEIGHT = 120;
     private final int INNER_OFFSET = 10;
-    private final int RANK_OFFSET = 5;
 
     public ComputerHand() {
         super();
@@ -25,10 +24,10 @@ public class ComputerHand extends Hand {
     @Override
     public void render(Graphics2D g2) {
         //g2.setColor(Color.black);
-        g2.setFont(new Font("Courier New", Font.BOLD, 20));
+        g2.setFont(new Font("Courier New", Font.BOLD, 32));
         
         final int X_OFFSET = 50;
-        final int Y_OFFSET = 100;
+        final int Y_OFFSET = 15;
         for (int i = 0; i < getCards().size(); i++) {
             int cardXLocation = X_OFFSET + ((CARD_WIDTH + INNER_OFFSET) * i); // Calculates x location with offsets
             int cardYLocation = Y_OFFSET; // Calculates y location with offsets
@@ -41,8 +40,8 @@ public class ComputerHand extends Hand {
             
             if (i < 1) {
                 String rank = getCards().get(i).render(); // Stores card rank
-                g2.drawString(rank, cardXLocation + RANK_OFFSET, cardYLocation + RANK_OFFSET); // Upper rank
-                g2.drawString(rank, cardXLocation + CARD_WIDTH - RANK_OFFSET, cardYLocation + CARD_HEIGHT - RANK_OFFSET); // Lower rank
+                int rankWidth = g2.getFontMetrics().stringWidth(rank);
+                g2.drawString(rank, cardXLocation + (CARD_WIDTH / 2) - (rankWidth / 2), cardYLocation + (CARD_HEIGHT / 2) + (8));
             }
         }
     }
