@@ -20,6 +20,8 @@ public class Hand {
     private boolean bust;
     
     public Hand() {
+        value = 0;
+
         draw();
         draw();
 
