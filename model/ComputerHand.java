@@ -4,20 +4,25 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
 
+import model.Game.State;
+
 public class ComputerHand extends Hand {
 
     private static final int CARD_WIDTH = 80;
     private static final int CARD_HEIGHT = 120;
     private final int INNER_OFFSET = 10;
 
-    public ComputerHand() {
-        super();
+    public ComputerHand(Game game) {
+        super(game);
     }
 
     @Override
     public void draw() {
         if (getValue() < 17) {
             super.draw();
+        }
+        else if (getGame().getState() == State.HOLD) {
+
         }
     }
 

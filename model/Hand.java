@@ -7,6 +7,8 @@ import java.awt.Graphics2D;
 import java.util.ArrayList;
 import java.util.Random;
 
+import model.Game.State;
+
 public class Hand {
 
     private static final int CARD_WIDTH = 80;
@@ -17,40 +19,44 @@ public class Hand {
 
     private ArrayList<Card> cards = new ArrayList<>();
     private int value;
-    private boolean bust;
+
+    private Game game;
     
-    public Hand() {
+    public Hand(Game game) {
+        this.game = game;
+
         value = 0;
 
         draw();
         draw();
-
-        bust = false;
     }
 
     public void draw() {
-        Random rand = new Random();
-        int value = rand.nextInt(NUM_OF_RANKS);
+        if (game.getState() == State.PLAYING) {
+            Random rand = new Random();
+            int value = rand.nextInt(NUM_OF_RANKS);
 
-        if (value > 10) {
-            cards.add(new FaceCard(value, this));
-        }
-        else if (value > 1) {
-            cards.add(new Card(value, this));
-        }
-        else {
-            cards.add(new Ace(this));
+            if (value > 10) {
+                cards.add(new FaceCard(value, this));
+            }
+            else if (value > 1) {
+                cards.add(new Card(value, this));
+            }
+            else {
+                cards.add(new Ace(this));
+            }
+
+            checkHand();
         }
     }
 
     public void checkHand() {
         if (value > 21) {
-            bust = true;
+            game.setState(State.LOSS);
         }
         else if (value == 21) {
-            //WIN
+            game.setState(State.WIN);
         }
-        // LESS THAN 21 BUT HOLD
         // LESS THAN 21
     }
 
@@ -64,6 +70,10 @@ public class Hand {
 
     public ArrayList<Card> getCards() {
         return cards;
+    }
+
+    public Game getGame() {
+        return game;
     }
 
     public void render(Graphics2D g2) {

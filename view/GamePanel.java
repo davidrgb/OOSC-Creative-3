@@ -9,6 +9,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import controller.ButtonListener;
 import model.Game;
 
 public class GamePanel {
@@ -42,13 +43,37 @@ public class GamePanel {
         holdButton = new JButton("Hold");
         newGameButton = new JButton("New Game");
 
-        //ButtonActionListener listener = new ButtonActionListener(this);
+        ButtonListener listener = new ButtonListener(this);
+
+        drawButton.addActionListener(listener);
+        holdButton.addActionListener(listener);
+        newGameButton.addActionListener(listener);
 
         controlPanel.add(drawButton);
         controlPanel.add(holdButton);
         controlPanel.add(newGameButton);
 
         container.add(BorderLayout.SOUTH, controlPanel);
+    }
+
+    public JButton getDrawButton() {
+        return drawButton;
+    }
+
+    public JButton getHoldButton() {
+        return holdButton;
+    }
+
+    public JButton getNewGameButton() {
+        return newGameButton;
+    }
+
+    public Game getGame() {
+        return game;
+    }
+
+    public GameCanvas getCanvas() {
+        return canvas;
     }
 
     public void render(Graphics2D g2) {
