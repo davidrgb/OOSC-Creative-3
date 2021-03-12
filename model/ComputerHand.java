@@ -39,9 +39,11 @@ public class ComputerHand extends Hand {
             g2.setColor(Color.black);
             g2.drawRect(cardXLocation, cardYLocation, CARD_WIDTH, CARD_HEIGHT); // Draws card outline
             
-            String rank = getCards().get(i).render(); // Stores card rank
-            g2.drawString(rank, cardXLocation + RANK_OFFSET, cardYLocation + RANK_OFFSET); // Upper rank
-            g2.drawString(rank, cardXLocation + CARD_WIDTH - RANK_OFFSET, cardYLocation + CARD_HEIGHT - RANK_OFFSET); // Lower rank
+            if (i < 1) {
+                String rank = getCards().get(i).render(); // Stores card rank
+                g2.drawString(rank, cardXLocation + RANK_OFFSET, cardYLocation + RANK_OFFSET); // Upper rank
+                g2.drawString(rank, cardXLocation + CARD_WIDTH - RANK_OFFSET, cardYLocation + CARD_HEIGHT - RANK_OFFSET); // Lower rank
+            }
         }
     }
 }
