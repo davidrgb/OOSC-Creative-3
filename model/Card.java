@@ -1,8 +1,5 @@
 package model;
 
-import java.awt.Font;
-import java.awt.Graphics2D;
-
 public class Card {
 
     private int value;
@@ -35,11 +32,6 @@ public class Card {
     public void addCard() {
         hand.setValue(this);
     }
-
-    /*public boolean swap() {
-        hand.setValue(this);
-        return false;
-    }*/
 
     public String render() {
         return "" + value;
