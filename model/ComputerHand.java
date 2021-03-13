@@ -24,6 +24,17 @@ public class ComputerHand extends Hand {
         else if (getGame().getState() == State.HOLD) {
 
         }
+        checkHand();
+        System.out.println("COM: " + getValue());
+    }
+
+    @Override
+    public void checkHand() {
+        if (getValue() > 21) {
+            checkSwap();
+            if (getValue() > 21) getGame().setState(State.WIN);
+
+        }
     }
 
     @Override
@@ -43,11 +54,9 @@ public class ComputerHand extends Hand {
             g2.setColor(Color.black);
             g2.drawRect(cardXLocation, cardYLocation, CARD_WIDTH, CARD_HEIGHT); // Draws card outline
             
-            if (i < 1) {
-                String rank = getCards().get(i).render(); // Stores card rank
-                int rankWidth = g2.getFontMetrics().stringWidth(rank);
-                g2.drawString(rank, cardXLocation + (CARD_WIDTH / 2) - (rankWidth / 2), cardYLocation + (CARD_HEIGHT / 2) + (8));
-            }
+            String rank = getCards().get(i).render(); // Stores card rank
+            int rankWidth = g2.getFontMetrics().stringWidth(rank);
+            if (i != 1 || getGame().getState() != State.PLAYING) g2.drawString(rank, cardXLocation + (CARD_WIDTH / 2) - (rankWidth / 2), cardYLocation + (CARD_HEIGHT / 2) + (8));
         }
     }
 }

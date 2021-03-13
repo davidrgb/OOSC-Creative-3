@@ -7,10 +7,12 @@ public class Card {
 
     private int value;
     private Hand hand;
+    private boolean isAce;
 
-    public Card(int value, Hand hand) {
+    public Card(int value, Hand hand, boolean isAce) {
         this.value = value;
         this.hand = hand;
+        this.isAce = isAce;
         addCard();
     }
 
@@ -26,8 +28,17 @@ public class Card {
         return hand;
     }
 
+    public boolean getIsAce() {
+        return isAce;
+    }
+
     public void addCard() {
         hand.setValue(this);
+    }
+
+    public boolean swap() {
+        hand.setValue(this);
+        return false;
     }
 
     public String render() {

@@ -20,7 +20,24 @@ public class Game {
 
     public void draw() {
         player.draw();
-        computer.draw();
+    }
+
+    public void comDraw() {
+        while (state == State.HOLD) {
+            computer.draw();
+            if (computer.getValue() > 21) {
+                state = State.WIN;
+            }
+            else if (computer.getValue() == player.getValue()) {
+                state = State.TIE;
+            }
+            else if (computer.getValue() > player.getValue()) {
+                state = State.LOSS;
+            }
+            else if (computer.getValue() >= 17) {
+                state = State.WIN;
+            }
+        }
     }
 
     public void render(Graphics2D g2) {

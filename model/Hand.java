@@ -32,32 +32,68 @@ public class Hand {
     }
 
     public void draw() {
-        if (game.getState() == State.PLAYING) {
+        if (game.getState() == State.PLAYING || game.getState() == State.HOLD) {
             Random rand = new Random();
             int value = rand.nextInt(NUM_OF_RANKS);
 
             if (value > 10) {
-                cards.add(new FaceCard(value, this));
+                cards.add(new FaceCard(value, this, false));
             }
             else if (value > 1) {
-                cards.add(new Card(value, this));
+                cards.add(new Card(value, this, false));
             }
             else {
-                cards.add(new Ace(this));
+                cards.add(new Ace(this, true));
             }
 
             checkHand();
+            System.out.println(this.value);
         }
     }
 
     public void checkHand() {
         if (value > 21) {
-            game.setState(State.LOSS);
+            checkSwap();
+            if (value > 21) game.setState(State.LOSS);
+
         }
         else if (value == 21) {
             game.setState(State.WIN);
         }
-        // LESS THAN 21
+    }
+
+    public void checkSwap() {
+        value = 0;
+        for (Card c: cards) {
+            if (!c.getIsAce()) {
+                c.addCard();
+            }
+        }
+        aceCalculation();
+        System.out.println(value);
+    }
+
+    public void aceCalculation() {
+        int aceValue = 21 - value;
+        int aces = 0;
+        for (Card c: cards) {
+            if (c.getIsAce()) {
+                aces++;
+            }
+        }
+        for (Card c: cards) {
+            if (c.getIsAce()) {
+                if ((11 + (aces - 1)) == aceValue) {
+                    c.setValue(11);
+                    aceValue = aceValue - 11;
+                }
+                else {
+                    c.setValue(1);
+                    --aceValue;
+                }
+                c.addCard();
+            }
+        }
     }
 
     public void setValue(Card card) {
@@ -80,7 +116,7 @@ public class Hand {
         g2.setFont(new Font("Courier New", Font.BOLD, 32));
         
         final int X_OFFSET = 50;
-        final int Y_OFFSET = 165;
+        final int Y_OFFSET = 215;
         for (int i = 0; i < cards.size(); i++) {
             int cardXLocation = X_OFFSET + ((CARD_WIDTH + INNER_OFFSET) * i); // Calculates x location with offsets
             int cardYLocation = Y_OFFSET; // Calculates y location with offsets

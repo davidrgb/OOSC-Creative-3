@@ -76,6 +76,10 @@ public class GamePanel {
         return canvas;
     }
 
+    public JFrame getWindow() {
+        return window;
+    }
+
     public void render(Graphics2D g2) {
         game.render(g2);
     }

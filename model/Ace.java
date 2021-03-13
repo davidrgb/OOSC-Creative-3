@@ -2,16 +2,38 @@ package model;
 
 public class Ace extends Card {
 
-    public Ace(Hand hand) {
-        super(11, hand);
+    private boolean swapped;
+
+    public Ace(Hand hand, boolean isAce) {
+        super(11, hand, isAce);
     }
 
     @Override
     public void addCard() {
-        if (getHand().getValue() + 11 > 21) {
-            setValue(1);
+        if (getValue() == 11) {
+            swapped = false;
         }
+        else {
+            swapped = true;
+        }
+        swap();
         super.addCard();
+    }
+
+    @Override
+    public boolean swap() {
+        if (!swapped) {
+            if (getHand().getValue() + 11 > 21) {
+                System.out.println("BEFORE: " + getValue());
+                setValue(1);
+                swapped = true;
+                System.out.println("AFTER: " + getValue());
+            }
+            else {
+                swapped = false;
+            }
+        }
+        return swapped;
     }
 
     @Override
