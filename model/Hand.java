@@ -83,7 +83,7 @@ public class Hand {
         }
         for (Card c: cards) {
             if (c.getIsAce()) {
-                if ((11 + (aces - 1)) == aceValue) {
+                if ((11 + (aces - 1)) <= aceValue) {
                     c.setValue(11);
                     aceValue = aceValue - 11;
                 }

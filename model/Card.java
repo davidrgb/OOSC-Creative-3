@@ -36,10 +36,10 @@ public class Card {
         hand.setValue(this);
     }
 
-    public boolean swap() {
+    /*public boolean swap() {
         hand.setValue(this);
         return false;
-    }
+    }*/
 
     public String render() {
         return "" + value;
