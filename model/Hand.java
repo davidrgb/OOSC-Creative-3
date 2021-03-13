@@ -55,7 +55,7 @@ public class Hand {
         if (value > 21) {
             checkSwap();
             if (value > 21) game.setState(State.LOSS);
-
+            else if (value == 21) game.setState(State.WIN);
         }
         else if (value == 21) {
             game.setState(State.WIN);
