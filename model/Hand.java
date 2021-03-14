@@ -47,7 +47,6 @@ public class Hand {
             }
 
             checkHand();
-            System.out.println(this.value);
         }
     }
 
@@ -70,7 +69,6 @@ public class Hand {
             }
         }
         aceCalculation();
-        System.out.println(value);
     }
 
     public void aceCalculation() {

@@ -28,11 +28,11 @@ public class Game {
             if (computer.getValue() > 21) {
                 state = State.WIN;
             }
-            else if (computer.getValue() == player.getValue()) {
-                state = State.TIE;
-            }
             else if (computer.getValue() > player.getValue()) {
                 state = State.LOSS;
+            }
+            else if (computer.getValue() == player.getValue() && computer.getValue() >= 17) {
+                state = State.TIE;
             }
             else if (computer.getValue() >= 17) {
                 state = State.WIN;

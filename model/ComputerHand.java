@@ -21,11 +21,6 @@ public class ComputerHand extends Hand {
         if (getValue() < 17) {
             super.draw();
         }
-        else if (getGame().getState() == State.HOLD) {
-
-        }
-        checkHand();
-        System.out.println("COM: " + getValue());
     }
 
     @Override
@@ -39,7 +34,6 @@ public class ComputerHand extends Hand {
 
     @Override
     public void render(Graphics2D g2) {
-        //g2.setColor(Color.black);
         g2.setFont(new Font("Courier New", Font.BOLD, 32));
         
         final int X_OFFSET = 50;
