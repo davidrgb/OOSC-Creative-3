@@ -13,8 +13,11 @@ public class Game {
     private Hand player;
     private ComputerHand computer;
 
+    private boolean winOnDraw = false;
+
     public Game() {
         player = new Hand(this);
+        if (player.getValue() == 21) winOnDraw = true;
         computer = new ComputerHand(this);
     }
 
@@ -40,6 +43,10 @@ public class Game {
         }
     }
 
+    public boolean winOnDraw() {
+        return winOnDraw;
+    }
+
     public void render(Graphics2D g2) {
         player.render(g2);
         computer.render(g2);
@@ -51,17 +58,5 @@ public class Game {
 
     public void setState(State state) {
         this.state = state;
-    }
-
-    public void compareHands() {
-        if (player.getValue() > computer.getValue()) {
-            setState(State.WIN);
-        }
-        else if (computer.getValue() > player.getValue()) {
-            setState(State.LOSS);
-        }
-        else {
-            setState(State.TIE);
-        }
     }
 }

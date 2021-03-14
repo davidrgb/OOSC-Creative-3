@@ -28,7 +28,6 @@ public class ComputerHand extends Hand {
         if (getValue() > 21) {
             checkSwap();
             if (getValue() > 21) getGame().setState(State.WIN);
-
         }
     }
 

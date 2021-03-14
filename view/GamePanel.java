@@ -53,6 +53,11 @@ public class GamePanel {
         controlPanel.add(holdButton);
         controlPanel.add(newGameButton);
 
+        if (game.winOnDraw()) {
+            drawButton.setEnabled(false);
+            holdButton.setEnabled(false);
+        }
+
         container.add(BorderLayout.SOUTH, controlPanel);
     }
 
