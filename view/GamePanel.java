@@ -11,6 +11,7 @@ import javax.swing.JPanel;
 
 import controller.ButtonListener;
 import model.Game;
+import model.Game.State;
 
 public class GamePanel {
     
@@ -53,7 +54,7 @@ public class GamePanel {
         controlPanel.add(holdButton);
         controlPanel.add(newGameButton);
 
-        if (game.winOnDraw()) {
+        if (game.getState() == State.WIN) {
             drawButton.setEnabled(false);
             holdButton.setEnabled(false);
         }
