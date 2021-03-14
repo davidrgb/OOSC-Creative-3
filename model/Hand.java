@@ -34,7 +34,7 @@ public class Hand {
     public void draw() {
         if (game.getState() == State.PLAYING || game.getState() == State.HOLD) {
             Random rand = new Random();
-            int value = rand.nextInt(NUM_OF_RANKS);
+            int value = rand.nextInt(NUM_OF_RANKS) + 1;
 
             if (value > 10) {
                 cards.add(new FaceCard(value, this, false));

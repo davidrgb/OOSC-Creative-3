@@ -14,9 +14,12 @@ public class GameCanvas extends JPanel {
     
     private GamePanel panel;
 
+    private final int X_RESOLUTION = 1000;
+    private final int Y_RESOLUTION = 350;
+
     public GameCanvas (GamePanel panel) {
         this.panel = panel;
-        setPreferredSize(new Dimension(600, 350));
+        setPreferredSize(new Dimension(X_RESOLUTION, Y_RESOLUTION));
         setBackground(Color.green);
     }
 

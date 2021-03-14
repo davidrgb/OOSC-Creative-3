@@ -25,6 +25,8 @@ public class GamePanel {
     private JButton holdButton;
     private JButton newGameButton;
 
+    private JPanel controlPanel;
+
     public GamePanel (JFrame window) {
         this.window = window;
     }
@@ -37,7 +39,7 @@ public class GamePanel {
         canvas = new GameCanvas(this);
         container.add(BorderLayout.CENTER, canvas);
 
-        JPanel controlPanel = new JPanel();
+        controlPanel = new JPanel();
         controlPanel.setLayout(new GridLayout(1,3));
 
         drawButton = new JButton("Draw");
